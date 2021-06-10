@@ -1,0 +1,17 @@
+(lang dune 2.8)
+(name FIXME)
+(generate_opam_files true)
+(cram enable)
+(license MIT)
+(authors FIXME)
+(maintainers FIXME)
+(source (github FIXME/FIXME))
+(homepage FIXME)
+(documentation FIXME)
+(package
+ (name FIXME)
+ (synopsis "FIXME")
+ (description "")
+ (depends
+  (base (and (>= v0.14.0) (< v0.15.0)))
+  (ppx_jane (and (>= v0.14.0) (< v0.15.0))) ))
