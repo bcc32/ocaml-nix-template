@@ -2,19 +2,16 @@
   description = "FIXME";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     ocaml-overlays.url = "github:nix-ocaml/nix-overlays";
     ocaml-overlays.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, flake-utils, nixpkgs, ocaml-overlays }:
+  outputs = { self, nixpkgs, flake-utils, ocaml-overlays }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [ ocaml-overlays.overlays.default ];
-        };
+        overlays = [ ocaml-overlays.overlays.default ];
+        pkgs = import nixpkgs { inherit system overlays; };
       in with pkgs; rec {
         devShells.default = mkShell {
           inputsFrom = [ packages.default ];
