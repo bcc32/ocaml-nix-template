@@ -25,7 +25,7 @@
       rec {
         devShells.default = mkShell {
           inputsFrom = [ packages.default ];
-          buildInputs = lib.optional stdenv.isLinux inotify-tools ++ [
+          buildInputs = (lib.optionals stdenv.hostPlatform.isLinux [ inotify-tools ]) ++ [
             ocamlPackages.merlin
             ocamlPackages.ocaml-lsp
             ocamlformat
