@@ -20,6 +20,7 @@
       let
         overlays = [ ocaml-overlays.overlays.default ];
         pkgs = import nixpkgs { inherit system overlays; };
+        ocamlPackages = pkgs.ocaml-ng.ocamlPackages_5_4;
       in
       with pkgs;
       rec {
@@ -28,7 +29,7 @@
           buildInputs = (lib.optionals stdenv.hostPlatform.isLinux [ inotify-tools ]) ++ [
             ocamlPackages.merlin
             ocamlPackages.ocaml-lsp
-            ocamlformat
+            ocamlPackages.ocamlformat
             ocamlPackages.ocp-indent
             ocamlPackages.utop
           ];
